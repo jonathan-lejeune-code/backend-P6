@@ -5,7 +5,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 // Création de nouveaux utilisateurs (POST)
-exports.singup = (req, res, next) => {
+exports.signup = (req, res, next) => {
 	//Hash du mot de passe
 	bcrypt.hash(req.body.password, 10)
 	.then(hash => {
