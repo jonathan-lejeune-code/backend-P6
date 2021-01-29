@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
+const cors = require('cors'); 
 
 const path = require('path');
 
@@ -24,6 +25,8 @@ app.use((req, res, next)=>{
 });
 
 app.use(bodyParser.json());
+
+app.use(cors());
 
 /////////////// Joining routes ///////////////////////
 app.use('/api/auth', userRoutes);
