@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator')
+const uniqueValidator = require('mongoose-unique-validator');
+const sha512 = require("crypto-js/sha512");
 
 //Création du modèle utilisateur
 const userSchema = mongoose.Schema({

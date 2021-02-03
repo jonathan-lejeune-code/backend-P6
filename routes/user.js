@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const sha512 = require("crypto-js/sha512");
 
 const userCtrl = require('../controllers/user');
 

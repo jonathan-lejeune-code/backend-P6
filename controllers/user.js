@@ -4,6 +4,9 @@ const User = require('../models/User');
 
 const jwt = require('jsonwebtoken');
 
+const sha512 = require("crypto-js/sha512");
+
+
 // Création de nouveaux utilisateurs (POST)
 exports.signup = (req, res, next) => {
 	//Hash du mot de passe
