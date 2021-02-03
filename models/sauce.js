@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');           // importation du paquet mangoose
 
 //Création du modèle sauce
-const sauceSchema = mongoose.Schema({
+const sauceSchema = mongoose.Schema({            // fonction Schema à qui on va passer notre Object et qui va dicter les différents champs
   userId: { type: String, required: true },
   name: { type: String, required: true },
   manufacturer: { type: String, required: true },
@@ -15,4 +15,4 @@ const sauceSchema = mongoose.Schema({
   usersDisliked: { type: [String] },
 });
 
-module.exports = mongoose.model('Sauce', sauceSchema);
+module.exports = mongoose.model('Sauce', sauceSchema);     // exportation du model terminé, en passant le nom du model et le schema

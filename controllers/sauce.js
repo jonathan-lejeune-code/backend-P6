@@ -1,5 +1,5 @@
-const Sauce = require('../models/Sauce');
-const fs = require('fs');
+const Sauce = require('../models/Sauce');   // importation du model Sauce
+const fs = require('fs');    // importation du paquet node js (gestion des fichiers système)
 
 //Récupération de toutes les sauces dans la base de données (GET)
 exports.getAllSauces = (req, res, next) => {

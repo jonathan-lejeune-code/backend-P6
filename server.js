@@ -1,6 +1,6 @@
 //Création du serveur
-const http = require('http');
-const app = require('./app');
+const http = require('http');   // Importation du package http de node (permet de creer un serveur)
+const app = require('./app');   // Importation de app.js
 
 //Renvoi d'un port valide
 const normalizePort = val => {
@@ -18,7 +18,7 @@ const normalizePort = val => {
 };
 
 const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+app.set('port', port); // Port utilisé par l'application express
 
 //Gérer les erreurs
 const errorHandler = error => {
@@ -43,7 +43,7 @@ const errorHandler = error => {
 			throw error;
 	}
 };
-const server = http.createServer(app);
+const server = http.createServer(app);  // L'application créée par express est une fonction qui va recevoir la requête et la réponse
 
 server.on('error', errorHandler);
 server.on('listening', ()=>{
@@ -52,4 +52,4 @@ server.on('listening', ()=>{
 	console.log('Listening on' + bind);
 })
 
-server.listen(port);
+server.listen(port); // Le serveur attend les requêtes au port 3000
