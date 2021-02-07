@@ -3,8 +3,8 @@ const fs = require('fs');    // importation du paquet node js (gestion des fichi
 
 //Récupération de toutes les sauces dans la base de données (GET)
 exports.getAllSauces = (req, res, next) => {
-  Sauce.find()
-    .then(sauces => res.status(200).json(sauces))
+  Sauce.find()        // on trouve les objets dans la base de donnée
+    .then(sauces => res.status(200).json(sauces))   // on renvoi les objets au format json
     .catch(error => res.status(400).json({
       error
     }));
@@ -12,10 +12,10 @@ exports.getAllSauces = (req, res, next) => {
 
 //Récupération d'un seule sauce grâce à son id (GET)
 exports.getOneSauce = (req, res, next) => {
-  Sauce.findOne({
+  Sauce.findOne({         // on trouve l'objet dans la base de donnée
       _id: req.params.id
     })
-    .then(sauce => res.status(200).json(sauce))
+    .then(sauce => res.status(200).json(sauce)) // on renvoi l'objet au format json
     .catch(error => res.status(404).json({
       error
     }));
@@ -23,13 +23,13 @@ exports.getOneSauce = (req, res, next) => {
 
 //Création d'une sauce (POST)
 exports.createSauce = (req, res, next) => {
-  const sauceObject = JSON.parse(req.body.sauce);
-  delete sauceObject._id;
+  const sauceObject = JSON.parse(req.body.sauce);            // on analyse la chaine de caractère de la requête que l'on transforme en objet
+  delete sauceObject._id;                                     //Suppression de l'id venant du frontend
 
 
   const sauce = new Sauce({
     ...sauceObject,
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`  // on créé une chaine complexe qui prend le protocol, le host du serveur, le dossier images et le nom du fichier
   });
   sauce.save()
     .then(() => res.status(201).json({
@@ -42,13 +42,13 @@ exports.createSauce = (req, res, next) => {
 
 //Modification d'une sauce (PUT)
 exports.modifySauce = (req, res, next) => {
-  const sauceObject = req.file ? {
-    ...JSON.parse(req.body.sauce),
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  const sauceObject = req.file ? {                                      // si on trouve un nouveau fichier
+    ...JSON.parse(req.body.sauce),                                       // on récupère la chaine de caractère et on la parse en objet
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` // on créé une chaine complexe qui prend le protocol, le host du serveur, le dossier images et le nom du fichier
   } : {
-    ...req.body
+    ...req.body                                                     // sinon on prend simplement de corps de la requête
   };
-  Sauce.updateOne({
+  Sauce.updateOne({             // on met à jour la sauce avec l'objet
       _id: req.params.id
     }, {
       ...sauceObject,
@@ -64,13 +64,13 @@ exports.modifySauce = (req, res, next) => {
 
 //Suppression d'une sauce (DELETE)
 exports.deleteSauce = (req, res, next) => {
-  Sauce.findOne({
+  Sauce.findOne({                 // on trouve l'objet dans la base de donnée
       _id: req.params.id
     })
     .then(sauce => {
-      const filename = sauce.imageUrl.split('/images/')[1];
-      fs.unlink(`images/${filename}`, () => {
-        Sauce.deleteOne({
+      const filename = sauce.imageUrl.split('/images/')[1];  // on extrait le nom du fichier à supprimer
+      fs.unlink(`images/${filename}`, () => {    // on le supprime grâce à fs.unlink
+        Sauce.deleteOne({        // quand on a supprimer l'image, on supprime l'objet dans la base
             _id: req.params.id
           })
           .then(() => res.status(200).json({
@@ -103,11 +103,11 @@ exports.likeSauce = (req, res, next) => {
         dislikes: 0
       }
       //Plusieurs cas
-      switch (like) {
+      switch (like) {        //on utilise l'instruction switch pour évaluer plusieurs expression 
         //Sauce like
         case 1: 
           newValues.usersLiked.push(userId);
-          break;
+          break;           //le break est la pour arrété la boucle au cas ou l'expression est ok 
         //Sauce dislike
         case -1: 
           newValues.usersDisliked.push(userId);

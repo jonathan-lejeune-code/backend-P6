@@ -10,7 +10,7 @@ const MIME_TYPES = {                    // petite bibliothèque des mime types p
 
 const storage = multer.diskStorage({                       // fonction de multer qui permet d'enregistrer sur le disque
     destination: (req, file, callback) => {                 // la destination est une fonction qui va expliquer à multer dans quel dossier enregistrer le fichier
-        //Enregistrement dans le dossier images
+                                                            //Enregistrement dans le dossier images
         callback(null, 'images')                            // null pour pas d'erreur et le nom du dossier
     },
     filename: (req, file, callback) => {                     // explique à multer quel nom de fichier utiliser
