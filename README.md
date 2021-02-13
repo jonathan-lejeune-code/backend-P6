@@ -1,4 +1,4 @@
-#titre _So-Peckoko_
+#titreSo-Peckoko
 
 Cloner le projet. Aller sur NodeJS.org puis telécharger. Installer Node.js pour l'exécution des serveurs Node. Initialiser un dépôt Git en exécutant git init depuis le dossier backend.
 
