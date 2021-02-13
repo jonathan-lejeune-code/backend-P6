@@ -1,3 +1,5 @@
+#titre_So-Peckoko_
+
 Cloner le projet. Aller sur NodeJS.org puis telécharger. Installer Node.js pour l'exécution des serveurs Node. Initialiser un dépôt Git en exécutant git init depuis le dossier backend.
 
 I. Backend
@@ -6,4 +8,7 @@ Pour activer taper sur le terminal avec l'éditeur de code (Visual Studio Code p
 
 II. Front end
 
-Pour activer le localhost:4200, taper sur le terminal => cd frontend, puis npm start
+Lien vers le front du projet:
+
+https://github.com/OpenClassrooms-Student-Center/dwj-projet6
+

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');// importation du paquet body-parser
 const mongoose = require('mongoose');   // importation du paquet mongoose
 const rateLimit = require("express-rate-limit");  // Utilisez pour limiter les demandes répétées aux API publiques et / ou aux points de terminaison tels que la réinitialisation du mot de passe (Empeche une entrée de force brute)
 const mongoSanitize = require('express-mongo-sanitize');// Permet de se défendre contre les attaques d'injections
+const xss = require('xss-clean')
 
 const userRoutes = require('./routes/user');  // importation du router user
 const sauceRoutes = require('./routes/sauce');  // importation du router sauce
@@ -13,7 +14,7 @@ const cors = require('cors');
 const path = require('path');    // importation du paquet node "path" qui donne accès au chemin du système de fichier
 
 // Connexion à la base de données mongoose
-mongoose.connect('mongodb+srv://LJdevweb:LJ291189@clusterprojet6.ikoae.mongodb.net/ClusterProjet6?retryWrites=true&w=majority', 
+mongoose.connect(process.env.DB_CONNECT, 
 {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
@@ -41,6 +42,7 @@ app.use(bodyParser.json());  // transforme le corps de la requête en objet java
 app.use(helmet())
 app.use(limiter);
 app.use(cors());
+app.use(xss())
 
 /////////////// Joining routes ///////////////////////
 app.use('/api/auth', userRoutes);    // pour cette route la, on utilise le router userRoutes
