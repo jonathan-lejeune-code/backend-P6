@@ -1,4 +1,4 @@
-#titre_So-Peckoko_
+#titre _So-Peckoko_
 
 Cloner le projet. Aller sur NodeJS.org puis telécharger. Installer Node.js pour l'exécution des serveurs Node. Initialiser un dépôt Git en exécutant git init depuis le dossier backend.
 
@@ -11,4 +11,8 @@ II. Front end
 Lien vers le front du projet:
 
 https://github.com/OpenClassrooms-Student-Center/dwj-projet6
+
+III. BDD
+
+Copier/coller le lien de votre BDD mongo DB dans le fichier .env  avec vos Information 
 
