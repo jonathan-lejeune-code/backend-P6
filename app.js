@@ -2,9 +2,9 @@ const express = require('express');      // importation du paquet express
 const helmet = require ('helmet');       // importation du paquet helmet
 const bodyParser = require('body-parser');// importation du paquet body-parser
 const mongoose = require('mongoose');   // importation du paquet mongoose
-const rateLimit = require("express-rate-limit");  // Utilisez pour limiter les demandes répétées aux API publiques et / ou aux points de terminaison tels que la réinitialisation du mot de passe (Empeche une entrée de force brute)
+const limiter = require('./middleware/apiLimiter');;  // Utilisez pour limiter les demandes répétées aux API publiques et / ou aux points de terminaison tels que la réinitialisation du mot de passe (Empeche une entrée de force brute)
 const mongoSanitize = require('express-mongo-sanitize');// Permet de se défendre contre les attaques d'injections
-const xss = require('xss-clean')
+const xss = require('xss-clean');
 
 const userRoutes = require('./routes/user');  // importation du router user
 const sauceRoutes = require('./routes/sauce');  // importation du router sauce
@@ -24,11 +24,6 @@ mongoose.connect(process.env.DB_CONNECT,
 
 const app = express();     // Création de l'application express
 app.use(mongoSanitize()); 
-
-const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 20 // limite chaque IP à 20 requêtes par fenêtre 
-  });
 
 //Définition headers CORS
 app.use((req, res, next)=>{       // middleware général appliqué à toute les requêtes (CORS)
